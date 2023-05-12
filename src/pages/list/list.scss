@@ -1,0 +1,43 @@
+.list {
+  display: flex;
+  width: 100%;
+  .listContainer {
+    flex: 6;
+  }
+  .listTopButtons {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    padding-right: 40px;
+
+    button {
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 500;
+      width: 100px;
+
+      &.add {
+        color: white;
+        background-color: rgb(44, 177, 44);
+      }
+
+      &.add:hover {
+        background-color: rgba(44, 177, 44, 0.89);
+      }
+
+      &.delete {
+        background-color: crimson;
+        color: white;
+      }
+
+      &.delete:hover {
+        background-color: rgb(220, 20, 60, 0.89);
+        color: white;
+      }
+    }
+  }
+}
