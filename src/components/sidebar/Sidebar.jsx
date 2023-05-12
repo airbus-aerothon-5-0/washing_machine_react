@@ -14,12 +14,21 @@ import ConstructionIcon from "@mui/icons-material/Construction";
 import LocalLaundryServiceIcon from "@mui/icons-material/LocalLaundryService";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { UserContext } from "../../App";
 
 const Sidebar = () => {
+  const { state, dispatch2 } = useContext(UserContext);
+  const navigate = useNavigate()
+  console.log(state)
   const { dispatch } = useContext(DarkModeContext);
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch2({ type: "CLEAR" });
+    navigate("/login");
+  }
   return (
     <div className="sidebar">
       <div className="top">
@@ -36,60 +45,33 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </li>
           <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          {state?.role_name === 'officer' && <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Users</span>
             </li>
-          </Link>
-          <Link to="/items" style={{ textDecoration: "none" }}>
+          </Link>}
+          {(state?.role_name === 'fabrication' || state?.role_name === 'officer' || state?.role_name === 'sub-assembly') && <Link to="/items" style={{ textDecoration: "none" }}>
             <li>
               <BuildIcon className="icon" />
-              <span>Items</span>
+              <span>Fabrication</span>
             </li>
-          </Link>
-          <li>
+          </Link>}
+          {(state?.role_name === 'sub-assembly' || state?.role_name === 'officer' || state?.role_name === 'assembly') && <li>
             <Link to="/sub-assembly" style={{ textDecoration: "none" }}>
               <ConstructionIcon className="icon" />
               <span>Sub-Assembly</span>
             </Link>
-          </li>
-          <li>
+          </li>}
+          {(state?.role_name === 'assembly' || state?.role_name === 'officer') && <li>
             <Link to="/assembly" style={{ textDecoration: "none" }}>
               <LocalLaundryServiceIcon className="icon" />
               <span>Assembly</span>
             </Link>
-          </li>
-          <p className="title">USEFUL</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li>
-          <p className="title">SERVICE</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
-          <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
+          </li>}
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span onClick={handleLogout}>Logout</span>
           </li>
           <p className="title">THEME</p>
         </ul>

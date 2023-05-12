@@ -29,9 +29,9 @@ const Datatable = ({ rows, columns, title }) => {
             >
               Delete
             </div> */}
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            {/* <Link to="/users/test" style={{ textDecoration: "none" }}>
               <div className="editButton">Edit</div>
-            </Link>
+            </Link> */}
           </div>
         );
       },
@@ -44,10 +44,9 @@ const Datatable = ({ rows, columns, title }) => {
         key={title}
         className="datagrid"
         rows={data}
-        columns={columns.concat(actionColumn)}
+        columns={columns}
         pageSize={12}
         rowsPerPageOptions={[12]}
-        checkboxSelection
       />
     </div>
   );

@@ -1,9 +1,9 @@
 export const assemblyColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 230 },
   {
     field: "process",
     headerName: "process",
-    width: 100,
+    width: 200,
   },
   {
     field: "process_id",
@@ -13,7 +13,7 @@ export const assemblyColumns = [
   {
     field: "start_date",
     headerName: "In Date",
-    width: 100,
+    width: 200,
   },
   {
     field: "out_date",

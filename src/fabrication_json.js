@@ -1,30 +1,30 @@
 export const itemColumns = [
-  { field: "id", headerName: "Id", width: 70 },
+  { field: "id", headerName: "Id", width: 150 },
   {
     field: "name",
     headerName: "Name",
-    width: 100,
+    width: 180,
   },
   {
     field: "raw_material",
     headerName: "Raw Material",
-    width: 230,
+    width: 150,
   },
   {
     field: "quantity",
     headerName: "Quantity",
-    width: 230,
+    width: 180,
   },
 
   {
     field: "start_date",
     headerName: "In Date",
-    width: 100,
+    width: 200,
   },
   {
     field: "out_date",
     headerName: "Out date",
-    width: 200,
+    width: 160,
   },
 ];
 

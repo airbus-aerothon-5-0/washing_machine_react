@@ -1,9 +1,9 @@
 export const subAssemblyColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 230 },
   {
     field: "process",
     headerName: "process",
-    width: 100,
+    width: 200,
   },
   {
     field: "machine_id",
@@ -13,7 +13,7 @@ export const subAssemblyColumns = [
   {
     field: "item_id",
     headerName: "Item ID",
-    width: 200,
+    width: 100,
   },
 
   {
@@ -32,6 +32,7 @@ export const subAssemblyColumns = [
 export const subAssemblyRows = [
   {
     id: "SAWM3031",
+    process: "Transmission Assembly",
     item_id: "T101",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -39,6 +40,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3032",
+    process: "Transmission Assembly",
     item_id: "T102",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -46,6 +48,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3033",
+    process: "Transmission Assembly",
     item_id: "T103",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -53,6 +56,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3034",
+    process: "Transmission Assembly",
     item_id: "T104",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -60,6 +64,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3035",
+    process: "Electrical Assembly",
     item_id: "T105",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -67,6 +72,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3037",
+    process: "Electrical Assembly",
     item_id: "T106",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -74,6 +80,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3038",
+    process: "Electrical Assembly",
     item_id: "T107",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -81,6 +88,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3039",
+    process: "Electrical Assembly",
     item_id: "T108",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -88,6 +96,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3021",
+    process: "Tub assemblies",
     item_id: "T109",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -95,6 +104,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3022",
+    process: "Tub assemblies",
     item_id: "T1011",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -102,6 +112,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3023",
+    process: "Tub assemblies",
     item_id: "T1012",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
@@ -109,6 +120,7 @@ export const subAssemblyRows = [
   },
   {
     id: "SAWM3024",
+    process: "Tub assemblies",
     item_id: "T1013",
     start_date: "10/02/2023",
     out_date: "10/03/2023",
