@@ -16,8 +16,8 @@ const SubAssemblyList = () => {
     // setAssemblyListLoding(false);
     // setAssemblyList(subAssemblyRows);
 
-    // TODO: test
-    fetch(process.env.REACT_APP_BASE_URL + "/fabrication/getFabrication", {
+    // TODO: test;
+    fetch("/api/v1/subAssembly/getSubAssembly", {
       headers: {
         "Content-Type": "application/json",
         authorization: "Bearer " + localStorage.getItem("jwt"),
@@ -42,7 +42,7 @@ const SubAssemblyList = () => {
   return (
     <List
       title="Items"
-      rows={subAssemblyRows}
+      rows={assemblyList}
       columns={subAssemblyColumns}
       loading={assemblyListLoading}
     >

@@ -23,9 +23,9 @@ export const subAssemblyColumns = [
       const item_arry = [];
       console.log(params.row.fabrication);
       for (const item in params.row.fabrication) {
-        item_arry.push(item.item_id);
+        item_arry.push(params.row.fabrication[item].item_id);
       }
-      return item_arry.join(" ");
+      return item_arry.join(", ");
     },
   },
 
