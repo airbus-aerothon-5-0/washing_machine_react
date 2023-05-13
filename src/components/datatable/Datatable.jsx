@@ -37,7 +37,7 @@ const Datatable = ({ rows, columns, title }) => {
       },
     },
   ];
-  console.log(rows);
+
   return (
     <div className="datatable">
       <DataGrid

@@ -8,7 +8,6 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { userColumns, userRows } from "./user_json";
-import { itemRows, itemColumns } from "./fabrication_json";
 import { subAssemblyRows, subAssemblyColumns } from "./subassembly_json";
 import { assemblyRows, assemblyColumns } from "./assembly_json";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,7 +16,8 @@ import { initialState, reducer } from "./context/userReducer";
 import { Fabrication } from "./pages/fabrication-add/Fabrication";
 import { SubAssembly } from "./pages/sub-assembly-add/SubAssembly";
 import { Assembly } from "./pages/assembly-add/Assembly";
-import { User } from "./pages/user-add/User"; 
+import AssemblyList from "./pages/assembly/assemblyList";
+import { User } from "./pages/user-add/User";
 
 export const UserContext = createContext();
 
@@ -26,7 +26,7 @@ const Routing = () => {
   const { state, dispatch2 } = useContext(UserContext);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user)
+    console.log(user);
     if (user) {
       dispatch2({ type: "USER", payload: user });
     } else {
@@ -36,7 +36,8 @@ const Routing = () => {
   return (
     <Routes>
       <Route path="/">
-        <Route index element={<Home />} />
+        <Route index element={<Single></Single>}></Route>
+        <Route element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="/fabrication/add" element={<Fabrication />} />
         <Route path="/sub-assembly/add" element={<SubAssembly />} />
@@ -46,21 +47,19 @@ const Routing = () => {
           <Route
             index
             element={
-              <List
-                title="Add Users"
-                rows={userRows}
-                columns={userColumns}
-              >
+              <List title="Add Users" rows={userRows} columns={userColumns}>
                 <div className="listTopButtons">
-                  {state?.role_name === 'officer' && <Link
-                    to="/user/add"
-                    className="link"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <button className="add" variant="contained">
-                      Add New
-                    </button>
-                  </Link>}
+                  {state?.role_name === "officer" && (
+                    <Link
+                      to="/user/add"
+                      className="link"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <button className="add" variant="contained">
+                        Add New
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </List>
             }
@@ -68,24 +67,7 @@ const Routing = () => {
           <Route path=":userId" element={<Single title="User Profile" />} />
         </Route>
         <Route path="items">
-          <Route
-            index
-            element={
-              <List title="Items" rows={itemRows} columns={itemColumns}>
-                <div className="listTopButtons">
-                  {state?.role_name === 'fabrication' && <Link
-                    to="/fabrication/add"
-                    className="link"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <button className="add" variant="contained">
-                      Add New
-                    </button>
-                  </Link>}
-                </div>
-              </List>
-            }
-          />
+          <Route index element={<AssemblyList />} />
           <Route path=":itemId" element={<Single title="Edit Item" />} />
           <Route path="new" element={<New title="Add New Item" />} />
         </Route>
@@ -99,15 +81,17 @@ const Routing = () => {
                 columns={subAssemblyColumns}
               >
                 <div className="listTopButtons">
-                  {state?.role_name === 'sub-assembly' && <Link
-                    to="/sub-assembly/add"
-                    className="link"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <button className="add" variant="contained">
-                      Add New
-                    </button>
-                  </Link>}
+                  {state?.role_name === "sub-assembly" && (
+                    <Link
+                      to="/sub-assembly/add"
+                      className="link"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <button className="add" variant="contained">
+                        Add New
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </List>
             }
@@ -117,10 +101,7 @@ const Routing = () => {
             element={<Single />}
             title="Edit Sub-Assembly"
           />
-          <Route
-            path="new"
-            element={<New title="Add New Sub-Assembly" />}
-          />
+          <Route path="new" element={<New title="Add New Sub-Assembly" />} />
         </Route>
 
         <Route path="assembly">
@@ -133,15 +114,17 @@ const Routing = () => {
                 columns={assemblyColumns}
               >
                 <div className="listTopButtons">
-                  {state?.role_name === 'assembly' && <Link
-                    to="/assembly/add"
-                    className="link"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <button className="add" variant="contained">
-                      Add New
-                    </button>
-                  </Link>}
+                  {state?.role_name === "assembly" && (
+                    <Link
+                      to="/assembly/add"
+                      className="link"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <button className="add" variant="contained">
+                        Add New
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </List>
             }
@@ -168,7 +151,7 @@ function App() {
           <Routing />
         </BrowserRouter>
       </UserContext.Provider>
-    </div >
+    </div>
   );
 }
 
