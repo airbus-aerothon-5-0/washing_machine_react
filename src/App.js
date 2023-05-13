@@ -20,6 +20,8 @@ import FabricationList from "./pages/fabrication/fabricationList";
 import SubAssemblyList from "./pages/subassembly/subAssemblyList";
 
 import { User } from "./pages/user-add/User";
+import { itemRows } from "./fabrication_json";
+import { itemColumns } from "./fabrication_json";
 
 export const UserContext = createContext();
 
@@ -45,6 +47,7 @@ const Routing = () => {
         <Route path="/sub-assembly/add" element={<SubAssembly />} />
         <Route path="/assembly/add" exact element={<Assembly />} />
         <Route path="/user/add" exact element={<User />} />
+        {/* <Route path="/fabrication/raw-materials" exact element={<RawMaterialsView />} /> */}
         <Route path="users">
           <Route
             index

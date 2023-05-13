@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { UserContext } from '../../App';
 import { Grid, Stack, InputLabel, Box, TextField, Button } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -9,7 +8,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
 export const SubAssembly = () => {
-    const { state, dispatch } = useContext(UserContext);
     const navigate = useNavigate()
     const [startDate, setStartDate] = useState('');
     const [stDate, setStDate] = useState(null);
@@ -26,18 +24,8 @@ export const SubAssembly = () => {
         setEndDate(dayjs(date).format('YYYY-DD-MM'));
         setEDate(date)
     };
-    useEffect(() => { }, []);
 
     const handleSubmit = () =>{
-
-        console.log(JSON.stringify({
-            in_date: startDate,
-            out_date: endDate,
-            processName: process,
-            machineId: machineId,
-            fabrication_item_ids:[itemId]
-        }))
-
         fetch("/api/v1/subAssembly/create", {
             method: "post",
             headers: {
@@ -56,7 +44,6 @@ export const SubAssembly = () => {
                navigate('/sub-assembly')
             })
             .catch((err) => {
-              console.log("hiiii");
               console.log(err);
             });
     }
