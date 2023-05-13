@@ -19,16 +19,25 @@ export const SubAssembly = () => {
     const [machineId, setMachineId] = useState('');
     const [itemId, setItemId] = useState('');
     const handleStartDateChange = (date) => {
-        setStartDate(dayjs(date).format('DD/MM/YY'));
+        setStartDate(dayjs(date).format('YYYY-DD-MM'));
         setStDate(date)
     };
     const handleEndDateChange = (date) => {
-        setEndDate(dayjs(date).format('DD/MM/YY'));
+        setEndDate(dayjs(date).format('YYYY-DD-MM'));
         setEDate(date)
     };
     useEffect(() => { }, []);
 
     const handleSubmit = () =>{
+
+        console.log(JSON.stringify({
+            in_date: startDate,
+            out_date: endDate,
+            processName: process,
+            machineId: machineId,
+            fabrication_item_ids:[itemId]
+        }))
+
         fetch("/api/v1/subAssembly/create", {
             method: "post",
             headers: {
@@ -43,11 +52,11 @@ export const SubAssembly = () => {
                 fabrication_item_ids:[itemId]
             }),
           })
-            .then((res) => res.json())
-            .then((data) => {
+            .then(() => {
                navigate('/sub-assembly')
             })
             .catch((err) => {
+              console.log("hiiii");
               console.log(err);
             });
     }
