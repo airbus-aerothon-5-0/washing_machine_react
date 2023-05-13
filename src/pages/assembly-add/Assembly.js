@@ -62,13 +62,13 @@ export const Assembly = () => {
                 >
                     <Grid container spacing={1} >
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Process" variant="outlined" value={process} onClick={(e) => setProcess(e.target.value)} />
+                            <TextField sx={{ width: '100%' }} label="Process" variant="outlined" value={process} onChange={(e) => setProcess(e.target.value)} />
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Process ID" variant="outlined" value={processId} onClick={(e) => setProcessId(e.target.value)} />
+                            <TextField sx={{ width: '100%' }} label="Process ID" variant="outlined" value={processId} onChange={(e) => setProcessId(e.target.value)} />
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Machine ID" variant="outlined" value={machineId} onClick={(e) => setMachineId(e.target.value)} />
+                            <TextField sx={{ width: '100%' }} label="Machine ID" variant="outlined" value={machineId} onChange={(e) => setMachineId(e.target.value)} />
                         </Grid>
                         <Grid item xs={6} sm={3}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>

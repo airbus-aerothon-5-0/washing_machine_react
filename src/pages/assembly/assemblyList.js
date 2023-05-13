@@ -44,7 +44,8 @@ const AssemblyList = () => {
     // ]);
 
     // TODO: test
-    fetch(process.env.REACT_APP_BASE_URL + "/fabrication/getFabrication", {
+    fetch("/api/v1/fabrication/getFabrication", {
+      method: "get",
       headers: {
         "Content-Type": "application/json",
         authorization: "Bearer " + localStorage.getItem("jwt"),
@@ -57,6 +58,7 @@ const AssemblyList = () => {
       .then((data) => {
         console.log(data);
         setAssemblyList(data);
+        setAssemblyListLoding(false);
       })
       .catch((err) => {
         console.error(err);

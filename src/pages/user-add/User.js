@@ -21,7 +21,7 @@ export const User = () => {
                 username: email,
                 password: password,
                 name: username,
-                role_names: role
+                role_names: [role]
             }),
         })
             .then(() => {
@@ -47,16 +47,16 @@ export const User = () => {
                 >
                     <Grid container spacing={1} >
                         <Grid item xs={12} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="User Name" variant="outlined" value={username} onClick={(e) => setUserName(e.target.value)} />
+                            <TextField sx={{ width: '100%' }} label="User Name" variant="outlined" value={username} onChange={(e) => setUserName(e.target.value)} />
                         </Grid>
                         <Grid item xs={12} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Email" variant="outlined" value={email} onClick={(e) => setEmail(e.target.value)} />
+                            <TextField sx={{ width: '100%' }} label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </Grid>
                         <Grid item xs={12} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Password" variant="outlined" value={password} onClick={(e) => setPassword(e.target.value)} />
+                            <TextField sx={{ width: '100%' }} label="Password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </Grid>
                         <Grid item xs={12} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Role" variant="outlined" value={role} onClick={(e) => setRole(e.target.value)} />
+                            <TextField sx={{ width: '100%' }} label="Role" variant="outlined" value={role} onChange={(e) => setRole(e.target.value)} />
                         </Grid>
                     </Grid>
                     <Box width='100%' mt={5}>
