@@ -21,7 +21,7 @@ const Datatable = ({ rows, columns, title }) => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="editButton">Edit</div>
             </Link>
             {/* <div
               className="deleteButton"
@@ -44,7 +44,7 @@ const Datatable = ({ rows, columns, title }) => {
         key={title}
         className="datagrid"
         rows={data}
-        columns={columns}
+        columns={columns.concat(actionColumn)}
         pageSize={12}
         rowsPerPageOptions={[12]}
       />
