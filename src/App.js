@@ -22,6 +22,7 @@ import SubAssemblyList from "./pages/subassembly/subAssemblyList";
 import { User } from "./pages/user-add/User";
 import { itemRows } from "./fabrication_json";
 import { itemColumns } from "./fabrication_json";
+import AssemblyList from "./pages/assembly/AssemblyList";
 
 export const UserContext = createContext();
 
@@ -87,30 +88,7 @@ const Routing = () => {
         </Route>
 
         <Route path="assembly">
-          <Route
-            index
-            element={
-              <List
-                title="Assembly"
-                rows={assemblyRows}
-                columns={assemblyColumns}
-              >
-                <div className="listTopButtons">
-                  {state?.role_name === "assembly" && (
-                    <Link
-                      to="/assembly/add"
-                      className="link"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <button className="add" variant="contained">
-                        Add New
-                      </button>
-                    </Link>
-                  )}
-                </div>
-              </List>
-            }
-          />
+          <Route index element={<AssemblyList />} />
           <Route
             path=":assemblyId"
             element={<Single />}

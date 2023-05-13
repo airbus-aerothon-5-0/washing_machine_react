@@ -56,12 +56,12 @@ const FabricationList = () => {
       })
       .then((data) => {
         console.log(data);
-        setfabricationList(data);
+        setFabricationList(data);
         setFabricationListLoding(false);
       })
       .catch((err) => {
         console.error(err);
-        setfabricationListError({ error: true, message: err.message });
+        setFabricationListError({ error: true, message: err.message });
         setFabricationListLoding(false);
       });
   }, []);

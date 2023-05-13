@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import List from "../list/List";
-import { subAssemblyRows, subAssemblyColumns } from "../../subassembly_json";
 import { useEffect, useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
+import { assemblyRows, assemblyColumns } from "../../assembly_json";
 
-const SubAssemblyList = () => {
+const AssemblyList = () => {
   const [assemblyList, setAssemblyList] = useState([]);
   const [assemblyListLoading, setAssemblyListLoding] = useState(true);
   const [assemblyListError, setAssemblyListError] = useState({
@@ -14,10 +13,10 @@ const SubAssemblyList = () => {
 
   useEffect(() => {
     // setAssemblyListLoding(false);
-    // setAssemblyList(subAssemblyRows);
+    // setAssemblyList(assemblyRows);
 
     // TODO: test;
-    fetch("/api/v1/subAssembly/getSubAssembly", {
+    fetch("/api/v1/subAssembly/Assembly", {
       headers: {
         "Content-Type": "application/json",
         authorization: "Bearer " + localStorage.getItem("jwt"),
@@ -41,9 +40,9 @@ const SubAssemblyList = () => {
 
   return (
     <List
-      title="Sub-Assembly"
+      title="Assembly"
       rows={assemblyList}
-      columns={subAssemblyColumns}
+      columns={assemblyColumns}
       loading={assemblyListLoading}
     >
       <div className="listTopButtons">
@@ -63,4 +62,4 @@ const SubAssemblyList = () => {
   );
 };
 
-export default SubAssemblyList;
+export default AssemblyList;
