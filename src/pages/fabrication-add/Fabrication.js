@@ -15,6 +15,10 @@ export const Fabrication = () => {
     const [stDate, setStDate] = useState(null);
     const [endDate, setEndDate] = useState('');
     const [eDate, setEDate] = useState(null);
+    const [item, setItem] = useState ("")
+    const [raw, setRaw] = useState ("")
+    const [qty, setQty] = useState (0)
+
     const handleStartDateChange = (date) => {
         setStartDate(dayjs(date).format('DD/MM/YY'));
         setStDate(date)
@@ -23,6 +27,25 @@ export const Fabrication = () => {
         setEndDate(dayjs(date).format('DD/MM/YY'));
         setEDate(date)
     };
+
+    const handleSubmit = () =>{
+        fetch("/createpost", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: "Bearer " + localStorage.getItem("jwt"),
+            },
+            body: JSON.stringify({
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              navigate('/items')
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+    }
     const currencies = [
         {
             value: 'sqft'
@@ -57,13 +80,13 @@ export const Fabrication = () => {
                 >
                     <Grid container spacing={1} >
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Item" variant="outlined" />
+                            <TextField sx={{ width: '100%' }} label="Item" variant="outlined" value={item} onChange={(e)=>setItem(e.target.value)}/>
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Raw material" variant="outlined" />
+                            <TextField sx={{ width: '100%' }} label="Raw material" variant="outlined" value={raw} onChange={(e)=>setRaw(e.target.value)}/>
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} id="outlined-basic" label="Quantity" variant="outlined" type="number" onChange={(e) => console.log(e.target.value)} />
+                            <TextField sx={{ width: '100%' }} id="outlined-basic" label="Quantity" variant="outlined" type="number" value={qty} onChange={(e)=>setQty(e.target.value)} />
                         </Grid>
                         <Grid item xs={6} sm={3}>
                             <TextField

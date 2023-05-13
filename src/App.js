@@ -49,7 +49,7 @@ const Routing = () => {
             element={
               <List title="Add Users" rows={userRows} columns={userColumns}>
                 <div className="listTopButtons">
-                  {state?.role_name === "officer" && (
+                  {state?.role_name === "data officer" && (
                     <Link
                       to="/user/add"
                       className="link"

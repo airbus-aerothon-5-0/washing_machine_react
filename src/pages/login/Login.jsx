@@ -16,18 +16,18 @@ import { UserContext } from "../../App";
 const theme = createTheme();
 // hit login set token
 export default function SignIn() {
-  const { state, dispatch } = useContext(UserContext);
+  const { state, dispatch2 } = useContext(UserContext);
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    fetch("/signin", {
+    fetch("/api/v1/auth/login", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: data.get("email"),
+        username: data.get("email"),
         password: data.get("password"),
       }),
     })
@@ -37,12 +37,12 @@ export default function SignIn() {
           console.log("error");
         } else {
           const user = {
-            email: data.get("email"),
-            role_name: res.role_name,
+            username: data.get("email"),
+            role_name: res.role_name[0],
           };
           localStorage.setItem("jwt", res.token);
           localStorage.setItem("user", JSON.stringify(user));
-          dispatch({ type: "USER", payload: user });
+          dispatch2({ type: "USER", payload: user });
           navigate("/");
         }
       })
