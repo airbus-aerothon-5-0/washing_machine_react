@@ -52,7 +52,7 @@ const Routing = () => {
                 columns={userColumns}
               >
                 <div className="listTopButtons">
-                  {state?.role_name === 'officer' && <Link
+                  {state?.role_name === 'data officer' && <Link
                     to="/user/add"
                     className="link"
                     style={{ textDecoration: "none" }}

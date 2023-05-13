@@ -45,25 +45,25 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </li>
           <p className="title">LISTS</p>
-          {state?.role_name === 'officer' && <Link to="/users" style={{ textDecoration: "none" }}>
+          {state?.role_name === 'data officer' && <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>}
-          {(state?.role_name === 'fabrication' || state?.role_name === 'officer' || state?.role_name === 'sub-assembly') && <Link to="/items" style={{ textDecoration: "none" }}>
+          {(state?.role_name === 'fabrication' || state?.role_name === 'data officer' || state?.role_name === 'sub-assembly') && <Link to="/items" style={{ textDecoration: "none" }}>
             <li>
               <BuildIcon className="icon" />
               <span>Fabrication</span>
             </li>
           </Link>}
-          {(state?.role_name === 'sub-assembly' || state?.role_name === 'officer' || state?.role_name === 'assembly') && <li>
+          {(state?.role_name === 'sub-assembly' || state?.role_name === 'data officer' || state?.role_name === 'assembly') && <li>
             <Link to="/sub-assembly" style={{ textDecoration: "none" }}>
               <ConstructionIcon className="icon" />
               <span>Sub-Assembly</span>
             </Link>
           </li>}
-          {(state?.role_name === 'assembly' || state?.role_name === 'officer') && <li>
+          {(state?.role_name === 'assembly' || state?.role_name === 'data officer') && <li>
             <Link to="/assembly" style={{ textDecoration: "none" }}>
               <LocalLaundryServiceIcon className="icon" />
               <span>Assembly</span>

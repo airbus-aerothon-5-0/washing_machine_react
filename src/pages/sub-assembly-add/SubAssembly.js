@@ -15,6 +15,9 @@ export const SubAssembly = () => {
     const [stDate, setStDate] = useState(null);
     const [endDate, setEndDate] = useState('');
     const [eDate, setEDate] = useState(null);
+    const [process, setProcess] = useState('');
+    const [machineId, setMachineId] = useState('');
+    const [itemId, setItemId] = useState('');
     const handleStartDateChange = (date) => {
         setStartDate(dayjs(date).format('DD/MM/YY'));
         setStDate(date)
@@ -24,6 +27,30 @@ export const SubAssembly = () => {
         setEDate(date)
     };
     useEffect(() => { }, []);
+
+    const handleSubmit = () =>{
+        fetch("/api/v1/subAssembly/create", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: "Bearer " + localStorage.getItem("jwt"),
+            },
+            body: JSON.stringify({
+                in_date: startDate,
+                out_date: endDate,
+                processName: process,
+                machineId: machineId,
+                fabrication_item_ids:[itemId]
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+               navigate('/sub-assembly')
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+    }
     return (
         <React.Fragment>
             <Stack justifyContent='center' alignItems='center'>
@@ -40,13 +67,13 @@ export const SubAssembly = () => {
                 >
                     <Grid container spacing={1} >
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Process" variant="outlined" />
+                            <TextField sx={{ width: '100%' }} label="Process" variant="outlined" value={process} onChange={(e)=>setProcess(e.target.value)} />
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Item ID" variant="outlined" />
+                            <TextField sx={{ width: '100%' }} label="Item ID" variant="outlined" value={itemId} onChange={(e)=>setItemId(e.target.value)}/>
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Machine ID" variant="outlined" />
+                            <TextField sx={{ width: '100%' }} label="Machine ID" variant="outlined" value={machineId} onChange={(e)=>setMachineId(e.target.value)}/>
                         </Grid>
                         <Grid item xs={6} sm={3}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -70,7 +97,7 @@ export const SubAssembly = () => {
                         </Grid>
                     </Grid >
                     <Box width='100%' mt={5}>
-                        <Button variant="contained" color='success'>Add Data</Button>
+                        <Button variant="contained" color='success' onClick={handleSubmit}>Add Data</Button>
                         <Button onClick={() => navigate('/sub-assembly')} variant="outlined" sx={{ color: "black", borderColor: "black", ml: '10px' }}>Back</Button>
                     </Box>
                 </Box>
