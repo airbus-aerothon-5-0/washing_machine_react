@@ -13,55 +13,57 @@ const FabricationList = () => {
   });
 
   useEffect(() => {
-    setFabricationListLoding(false);
-    setFabricationList([
-      {
-        id: 1,
-        item_id: "T1",
-        in_date: "2023-03-10T00:00:00.000+00:00",
-        out_date: "2023-03-10T00:00:00.000+00:00",
-        rawMaterials: {
-          id: 1,
-          raw_material_name: "steel sheet",
-          item_name: "tub",
-          quantity_value: 10.0,
-          quantity_unit: "kg",
-        },
-      },
-      {
-        id: 2,
-        item_id: "T2",
-        in_date: "2023-03-10T00:00:00.000+00:00",
-        out_date: "2023-03-10T00:00:00.000+00:00",
-        rawMaterials: {
-          id: 2,
-          raw_material_name: "leather",
-          item_name: "belt",
-          quantity_value: 10.0,
-          quantity_unit: "kg",
-        },
-      },
-    ]);
+    // setFabricationListLoding(false);
+    // setFabricationList([
+    //   {
+    //     id: 1,
+    //     item_id: "T1",
+    //     in_date: "2023-03-10T00:00:00.000+00:00",
+    //     out_date: "2023-03-10T00:00:00.000+00:00",
+    //     rawMaterials: {
+    //       id: 1,
+    //       raw_material_name: "steel sheet",
+    //       item_name: "tub",
+    //       quantity_value: 10.0,
+    //       quantity_unit: "kg",
+    //     },
+    //   },
+    //   {
+    //     id: 2,
+    //     item_id: "T2",
+    //     in_date: "2023-03-10T00:00:00.000+00:00",
+    //     out_date: "2023-03-10T00:00:00.000+00:00",
+    //     rawMaterials: {
+    //       id: 2,
+    //       raw_material_name: "leather",
+    //       item_name: "belt",
+    //       quantity_value: 10.0,
+    //       quantity_unit: "kg",
+    //     },
+    //   },
+    // ]);
 
     // TODO: test
-    //   fetch(process.env.REACT_APP_BASE_URL + "/fabrication/getFabrication", {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       authorization: "Bearer " + localStorage.getItem("jwt"),
-    //     },
-    //   })
-    //     .then((response) => {
-    //       console.log(response);
-    //       return response.json();
-    //     })
-    //     .then((data) => {
-    //       console.log(data);
-    //       setfabricationList(data);
-    //     })
-    //     .catch((err) => {
-    //       console.error(err);
-    //       setfabricationListError({ error: true, message: err.message });
-    //     });
+    fetch("/api/v1/fabrication/getFabrication", {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setfabricationList(data);
+        setFabricationListLoding(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setfabricationListError({ error: true, message: err.message });
+        setFabricationListLoding(false);
+      });
   }, []);
 
   return (
