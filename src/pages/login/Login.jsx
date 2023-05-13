@@ -9,7 +9,7 @@ import { UserContext } from '../../App';
 const theme = createTheme();
 
 export default function SignIn() {
-  const { state, dispatch } = useContext(UserContext);
+  const { state, dispatch2 } = useContext(UserContext);
   const navigate = useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +35,7 @@ export default function SignIn() {
           }
           localStorage.setItem("jwt", res.token);
           localStorage.setItem("user", JSON.stringify(user));
-          dispatch({ type: "USER", payload: user });
+          dispatch2({ type: "USER", payload: user });
           navigate('/')
         }
       })
