@@ -17,6 +17,8 @@ import { Fabrication } from "./pages/fabrication-add/Fabrication";
 import { SubAssembly } from "./pages/sub-assembly-add/SubAssembly";
 import { Assembly } from "./pages/assembly-add/Assembly";
 import FabricationList from "./pages/fabrication/fabricationList";
+import SubAssemblyList from "./pages/subassembly/subAssemblyList";
+
 import { User } from "./pages/user-add/User";
 
 export const UserContext = createContext();
@@ -72,30 +74,7 @@ const Routing = () => {
           <Route path="new" element={<New title="Add New Item" />} />
         </Route>
         <Route path="sub-assembly">
-          <Route
-            index
-            element={
-              <List
-                title="Sub-Assembly"
-                rows={subAssemblyRows}
-                columns={subAssemblyColumns}
-              >
-                <div className="listTopButtons">
-                  {state?.role_name === "sub-assembly" && (
-                    <Link
-                      to="/sub-assembly/add"
-                      className="link"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <button className="add" variant="contained">
-                        Add New
-                      </button>
-                    </Link>
-                  )}
-                </div>
-              </List>
-            }
-          />
+          <Route index element={<SubAssemblyList />} />
           <Route
             path=":sub-assemblyId"
             element={<Single />}
