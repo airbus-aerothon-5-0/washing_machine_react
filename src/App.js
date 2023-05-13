@@ -16,7 +16,7 @@ import { initialState, reducer } from "./context/userReducer";
 import { Fabrication } from "./pages/fabrication-add/Fabrication";
 import { SubAssembly } from "./pages/sub-assembly-add/SubAssembly";
 import { Assembly } from "./pages/assembly-add/Assembly";
-import AssemblyList from "./pages/assembly/assemblyList";
+import FabricationList from "./pages/fabrication/fabricationList";
 import { User } from "./pages/user-add/User";
 
 export const UserContext = createContext();
@@ -67,7 +67,7 @@ const Routing = () => {
           <Route path=":userId" element={<Single title="User Profile" />} />
         </Route>
         <Route path="items">
-          <Route index element={<AssemblyList />} />
+          <Route index element={<FabricationList />} />
           <Route path=":itemId" element={<Single title="Edit Item" />} />
           <Route path="new" element={<New title="Add New Item" />} />
         </Route>
