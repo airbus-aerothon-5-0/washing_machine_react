@@ -67,7 +67,7 @@ const AssemblyList = () => {
   return (
     <List
       title="Items"
-      rows={itemRows}
+      rows={assemblyList}
       columns={itemColumns}
       loading={assemblyListLoading}
     >
