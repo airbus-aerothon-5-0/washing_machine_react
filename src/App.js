@@ -17,7 +17,7 @@ import { initialState, reducer } from "./context/userReducer";
 import { Fabrication } from "./pages/fabrication-add/Fabrication";
 import { SubAssembly } from "./pages/sub-assembly-add/SubAssembly";
 import { Assembly } from "./pages/assembly-add/Assembly";
-import { User } from "./pages/user-add/User"; 
+import { User } from "./pages/user-add/User";
 
 export const UserContext = createContext();
 
@@ -42,6 +42,7 @@ const Routing = () => {
         <Route path="/sub-assembly/add" element={<SubAssembly />} />
         <Route path="/assembly/add" exact element={<Assembly />} />
         <Route path="/user/add" exact element={<User />} />
+        {/* <Route path="/fabrication/raw-materials" exact element={<RawMaterialsView />} /> */}
         <Route path="users">
           <Route
             index
@@ -74,11 +75,20 @@ const Routing = () => {
               <List title="Items" rows={itemRows} columns={itemColumns}>
                 <div className="listTopButtons">
                   {state?.role_name === 'fabrication' && <Link
+                    to="/fabrication/raw-materials"
+                    className="link"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <button className="add" variant="outlined" style={{ backgroundColor: 'blue', cursor: 'pointer' }}>
+                      View raw
+                    </button>
+                  </Link>}
+                  {state?.role_name === 'fabrication' && <Link
                     to="/fabrication/add"
                     className="link"
                     style={{ textDecoration: "none" }}
                   >
-                    <button className="add" variant="contained">
+                    <button className="add" variant="contained" style={{ cursor: 'pointer' }}>
                       Add New
                     </button>
                   </Link>}

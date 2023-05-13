@@ -1,29 +1,51 @@
 import * as React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import { useState } from 'react';
 import { Button, TextField, Box, Grid, Stack, InputLabel } from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import { UserContext } from '../../App';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
 export const Assembly = () => {
-    const { state, dispatch } = useContext(UserContext);
     const navigate = useNavigate()
     const [startDate, setStartDate] = useState('');
     const [stDate, setStDate] = useState(null);
     const [endDate, setEndDate] = useState('');
     const [eDate, setEDate] = useState(null);
+    const [process, setProcess] = useState("")
+    const [processId, setProcessId] = useState("")
+    const [machineId, setMachineId] = useState("")
     const handleStartDateChange = (date) => {
-        setStartDate(dayjs(date).format('DD/MM/YY'));
+        setStartDate(dayjs(date).format('YYYY-DD-MM'));
         setStDate(date)
     };
     const handleEndDateChange = (date) => {
-        setEndDate(dayjs(date).format('DD/MM/YY'));
+        setEndDate(dayjs(date).format('YYYY-DD-MM'));
         setEDate(date)
     };
-    useEffect(() => { }, []);
+    const handleSubmit = () => {
+        fetch("/api/v1/Assembly/create", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: "Bearer " + localStorage.getItem("jwt"),
+            },
+            body: JSON.stringify({
+                in_date: startDate,
+                out_date: endDate,
+                processName: process,
+                machineId: machineId,
+                subAssembly_assemblyid: [processId]
+            }),
+        })
+            .then(() => {
+                navigate('/assembly')
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
     return (
         <React.Fragment>
             <Stack justifyContent='center' alignItems='center'>
@@ -40,13 +62,13 @@ export const Assembly = () => {
                 >
                     <Grid container spacing={1} >
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Process" variant="outlined" />
+                            <TextField sx={{ width: '100%' }} label="Process" variant="outlined" value={process} onClick={(e) => setProcess(e.target.value)} />
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Process ID" variant="outlined" />
+                            <TextField sx={{ width: '100%' }} label="Process ID" variant="outlined" value={processId} onClick={(e) => setProcessId(e.target.value)} />
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <TextField sx={{ width: '100%' }} label="Machine ID" variant="outlined" />
+                            <TextField sx={{ width: '100%' }} label="Machine ID" variant="outlined" value={machineId} onClick={(e) => setMachineId(e.target.value)} />
                         </Grid>
                         <Grid item xs={6} sm={3}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -70,7 +92,7 @@ export const Assembly = () => {
                         </Grid>
                     </Grid >
                     <Box width='100%' mt={5}>
-                        <Button variant="contained" color='success'>Add Data</Button>
+                        <Button variant="contained" color='success' onClick={handleSubmit}>Add Data</Button>
                         <Button onClick={() => navigate('/assembly')} variant="outlined" sx={{ color: "black", borderColor: "black", ml: '10px' }}>Back</Button>
                     </Box>
                 </Box>
