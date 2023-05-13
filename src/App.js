@@ -18,6 +18,8 @@ import { SubAssembly } from "./pages/sub-assembly-add/SubAssembly";
 import { Assembly } from "./pages/assembly-add/Assembly";
 import AssemblyList from "./pages/assembly/assemblyList";
 import { User } from "./pages/user-add/User";
+import { itemRows } from "./fabrication_json";
+import { itemColumns } from "./fabrication_json"; 
 
 export const UserContext = createContext();
 
